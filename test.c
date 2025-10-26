@@ -25,7 +25,12 @@
 #endif
 #include "net.h"
 #include "win32.h"
-
+#ifdef _WIN32
+#include <windows.h>
+#define usleep(x) Sleep((x) / 1000) 
+#else
+#include <unistd.h>
+#endif
 enum connection_type {
     CONN_TCP,
     CONN_UNIX,
