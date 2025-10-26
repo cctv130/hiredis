@@ -85,7 +85,9 @@ int win32_redisKeepAlive(SOCKET sockfd, int interval_ms);
 #define connect(sockfd, addr, addrlen) win32_connect(sockfd, addr, addrlen)
 #define getsockopt(sockfd, level, optname, optval, optlen) win32_getsockopt(sockfd, level, optname, optval, optlen)
 #define setsockopt(sockfd, level, optname, optval, optlen) win32_setsockopt(sockfd, level, optname, optval, optlen)
+#if defined(_WIN32) && !defined(__MINGW32__)
 #define close(fd) win32_close(fd)
+#endif
 #define recv(sockfd, buf, len, flags) win32_recv(sockfd, buf, len, flags)
 #define send(sockfd, buf, len, flags) win32_send(sockfd, buf, len, flags)
 #define poll(fds, nfds, timeout) win32_poll(fds, nfds, timeout)
